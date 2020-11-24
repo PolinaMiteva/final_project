@@ -2,7 +2,7 @@
 /*
 SelectFilter2 - Turns a multiple-select box into a filter interface.
 
-Requires core.js and SelectBox.js.
+Requires Django_fnl_project.js and SelectBox.js.
 */
 'use strict';
 {
