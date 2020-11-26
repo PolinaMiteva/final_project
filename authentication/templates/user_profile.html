@@ -1,0 +1,12 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="form">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Edit">
+    </form>
+</div>
+{% endblock %}

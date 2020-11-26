@@ -1,0 +1,21 @@
+.index-img {
+    /*padding-top: 25px;*/
+    /*padding-bottom: 25px;*/
+    margin-top: 80px;
+    margin-left: 15px;
+    margin-bottom: 1em;
+    /*width: 1000px;*/
+    /*height: 1000px;*/
+    size: 80px;
+}
+
+.custom-nav {
+    font-family: papyrus;
+    font-size: 20px;
+    margin-left: 100px;
+    margin-right: 150px;
+}
+
+.nav-item {
+    margin-right: 8px;
+}
