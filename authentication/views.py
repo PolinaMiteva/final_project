@@ -1,37 +1,28 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, HttpResponseRedirect
-from django.contrib.auth import views as auth_views
-from django.views.generic.edit import CreateView, DeleteView
-from authentication.forms import ProfileForm
-from django.utils.decorators import method_decorator
-# from authtools.views import LoginView, LogoutView
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, View, FormView, CreateView
+from authentication.forms import RegisterForm, ProfileForm
 
 
-class RegisterProfileView(CreateView):
-    template_name = 'user_profile.html'
-    #change to next url
-    success_url = '/'
-    form_class = ProfileForm
-    success_message = "Your profile was created successfully"
+def register(request):
+    if request.method == 'POST':
+        user_form = RegisterForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile was created successfully')
+            return redirect('index')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    elif request.method == "GET":
+        user_form = RegisterForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-        # see how to send email
-            return HttpResponseRedirect('/success/')
-
-        return render(request, self.template_name, {'form': form})
-
-
-class DeleteProfileView(LoginRequiredMixin, DeleteView):
-    template_name = 'user_profile.html'
-    # change to next url
-    success_url = '/'
-    form_class = ProfileForm
-    success_message = "Your profile was successfully deleted!"
+    return render(request, 'index.html', context={
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
 
 
