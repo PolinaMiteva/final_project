@@ -6,6 +6,7 @@ class ProfileForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.form_control()
+        self.is_staff = True
 
     def form_control(self):
         for _, field in self.fields.items():
