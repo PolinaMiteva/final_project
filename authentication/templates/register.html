@@ -2,11 +2,30 @@
 {% load static %}
 
 {% block page_content %}
-<p class="form">
-    <form method="POST">
+    <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Create">
+        <h4>Register</h4>
+        <form class="form-group">
+            {% if user_form.errors %}
+                {{ user_form.errors }}
+            {% endif %}
+
+            <p>
+                <label for="Email" class="floatLabel">Username</label>
+                {{ user_form.username }}
+            </p>
+            <p>
+                <label for="password" >Password</label>
+                {{ user_form.password1 }}
+            </p>
+            <p>
+                <label for="confirm_password" class="floatLabel">Confirm Password</label>
+                {{ user_form.password2 }}
+
+            </p>
+            <p>
+                <input type="submit" value="Create My Account" id="submit">
+            </p>
+        </form>
     </form>
-</p>
 {% endblock %}
