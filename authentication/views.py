@@ -1,9 +1,10 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.db import transaction
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
-from authentication.forms import RegistrationForm
+from authentication.forms import RegistrationForm, ProfileForm
 
 
 def register(request):
@@ -22,3 +23,26 @@ def register(request):
         user_form = RegistrationForm()
 
     return render(request, template_name='register.html', context={'user_form': user_form})
+
+
+def profile_details(request):
+    pass
+
+
+@transaction.atomic
+def profile_update(request):
+    if request.method == 'POST':
+        user_form = RegistrationForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            return redirect('index')
+    elif request.method == 'GET':
+        user_form = RegistrationForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user)
+
+    return render(request, 'update_profile.html',
+                  context={'user_form': user_form, 'profile_form': profile_form})

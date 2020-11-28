@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block page_content %}
+    <form action="#" method="post">
+        {% csrf_token %}
+
+        {% if form.messeges %}
+            <span style="margin: 2em; text-align: center">
+                <strong>{{form.messeges}}</strong>
+            </span>
+        {% endif %}
+
+        <h4>Log In</h4>
+        <p>
+            <label for="Username" class="floatLabel">Username</label>
+            <input id="Username" name="Email" type="text">
+        </p>
+        <p>
+            <label for="password" class="floatLabel">Password</label>
+            <input id="password" name="password" type="password">
+        </p>
+        <p>
+            <input type="submit" value="Log In" id="submit">
+            <span style="margin: 2em; text-align: center">
+                <strong>You don't have an account?</strong>
+                <span><a href="{% url 'register' %}">Register</a></span>
+            </span>
+        </p>
+    </form>
+{% endblock %}

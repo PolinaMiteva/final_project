@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_content %}
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'register' %}" method="post" >
         {% csrf_token %}
         <h4>Register</h4>
         <form class="form-group">
