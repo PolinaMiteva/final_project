@@ -9,9 +9,9 @@
     size: 80px;
 }
 
-.custom-nav {
+.custom-nav, dropdown-item {
     font-family: papyrus;
-    font-size: 20px;
+    font-size: 30px;
     margin-left: 100px;
     margin-right: 150px;
 }

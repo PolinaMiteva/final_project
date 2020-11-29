@@ -2,8 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from authentication.forms import RegistrationForm, ProfileForm
 
 
@@ -46,3 +46,15 @@ def profile_update(request):
 
     return render(request, 'update_profile.html',
                   context={'user_form': user_form, 'profile_form': profile_form})
+
+
+class CustomLogIn(SuccessMessageMixin, LoginView):
+    template_name = 'login.html'
+    success_url = 'index.html'
+    success_message = 'Welcome to your profile'
+
+
+
+
+
+
