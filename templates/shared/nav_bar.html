@@ -40,6 +40,7 @@
                     <a class="nav-link" href="{% url 'register' %}"> Register </a>
                 </li>
                 <li class="nav-item">
+
                     <a class="nav-link " href="{% url 'login' %}"> Log In </a>
                 </li>
             {% else %}
@@ -49,8 +50,8 @@
                         Welcome, {{ user.username }}!
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'details' %}">Details</a>
-                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'update profile' %}">Update profile</a>
+                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'details' user.id %}">Details</a>
+                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'update profile'  user.id %}">Update profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                     </div>

@@ -1,0 +1,84 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ user.username }}'s profile
+{% endblock %}
+
+{% block page_content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="{{ user.profile.picture.url }}"
+                         alt="No picture">
+                    <div class="row" style="margin: 20px 98px  20px 98px  ">
+                        <button class="btn btn-outline-light" value="Edit profile" onclick="{% url 'update profile' %}">Edit profile</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+
+                    <h5>
+                        {% if user.first_name or user.last_name %}
+                            {{ user.first_name }} {{ user.last_name }}
+                        {% else %}
+                            Your name
+                        {% endif %}
+                    </h5>
+
+                    <p class="">Date joined : <span class="text-align-center"> {{ user.date_joined }} </span></p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Username</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ user.username }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                {% if user.first_name or user.last_name %}
+                                    {{ user.first_name }} {{ user.last_name }}
+                                {% else %}
+                                    Your name
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ user.email }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-md-6">
+                            <label>Phone</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ user.profile.phone_number }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}
