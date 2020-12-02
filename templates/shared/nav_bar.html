@@ -35,7 +35,7 @@
     <div class="navbar-nav">
         <ul class="navbar-nav">
             {#             #make active if on page#}
-            {% if not user.is_authenticated %}
+            {% if not request.user.is_authenticated %}
                 <li class="nav-item active navbar-right" style="margin-right: 10px">
                     <a class="nav-link" href="{% url 'register' %}"> Register </a>
                 </li>
@@ -43,15 +43,15 @@
 
                     <a class="nav-link " href="{% url 'login' %}"> Log In </a>
                 </li>
-            {% else %}
+            {% elif request.user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="bold">
-                        Welcome, {{ user.username }}!
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        Welcome, {{ request.user.username }}!
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'details' user.id %}">Details</a>
-                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'update profile'  user.id %}">Update profile</a>
+                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'details' request.user.pk %}">Details</a>
+                        <a class="dropdown-item" style="font-size: 22px" href="{% url 'update-profile'  request.user.pk %}">Update profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                     </div>

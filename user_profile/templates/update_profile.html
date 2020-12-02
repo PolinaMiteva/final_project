@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    Profile update
+{% endblock %}
+
+{% block page_content %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h4>Edit profile</h4>
+        <form class="form-group">
+            {% if user_form.errors %}
+                {{ user_form.errors }}
+            {% endif %}
+
+            <p>
+                <label for="first name">First name</label>
+                {{ user.first_name }}
+            </p>
+            <p>
+                <label for="last name" class="floatLabel">Last name</label>
+                {{ user.last_name }}
+            </p>
+            <p>
+                <label for="email" class="floatLabel">Email</label>
+                {{ user.email }}
+            </p>
+            <p>
+                <label for="phone number" class="floatLabel">Phone number</label>
+                {{ profile.phone_number }}
+            </p>
+            <p>
+                <label for="picture" class="floatLabel">Profile picture</label>
+                {{ profile.picture }}
+            </p>
+
+            <p>
+                <input type="submit" value="Update" id="submit">
+                <span style="margin: 2em; text-align: center">
+                    <strong>You have an account?</strong>
+                <span><a href="{% url 'login' %}">Log in</a></span>
+
+            </p>
+        </form>
+    </form>
+{% endblock %}

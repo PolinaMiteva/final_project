@@ -6,7 +6,9 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
-from authentication.forms import RegistrationForm, ProfileForm
+from authentication.forms import RegistrationForm
+from user_profile.forms import ProfileForm
+
 
 @transaction.atomic
 def register(request):

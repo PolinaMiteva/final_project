@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block page_content %}
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
                     <img src="{{ user.profile.picture.url }}"
-                         alt="No picture">
+                         alt="No picture" style="width: 350px; height: 350px; margin-top: 28px; margin-bottom: 28px; ">
                     <div class="row" style="margin: 20px 98px  20px 98px  ">
-                        <button class="btn btn-outline-light" value="Edit profile" onclick="{% url 'update profile' %}">Edit profile</button>
+                        <button class="btn btn-outline-light" value="Edit profile"><a href="{% url 'update-profile' user.pk %}">Edit profile</a></button>
                     </div>
                 </div>
 
@@ -28,7 +28,8 @@
                         {% endif %}
                     </h5>
 
-                    <p class="">Date joined : <span class="text-align-center"> {{ user.date_joined }} </span></p>
+
+                    <p class="">Date joined : <span class="text-align-center"> {{ user.date_joined|date }} </span></p>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -71,14 +72,11 @@
                             <p>{{ user.profile.phone_number }}</p>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
             </div>
         </div>
     </form>
 
 
-{% endblock %}
+{% endblock page_content %}

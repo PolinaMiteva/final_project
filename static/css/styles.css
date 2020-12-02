@@ -9,6 +9,20 @@
     size: 80px;
 }
 
+.bg {
+  /* The image used */
+  background-image: url('/media/lotus-index.jpg');
+  opacity: 0.4;
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .custom-nav, dropdown-item {
     font-family: papyrus;
     font-size: 30px;
