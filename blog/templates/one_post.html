@@ -1,0 +1,178 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock title %}
+
+{% block page_content %}
+    <div class="container">
+        <article class="article-post">
+            <div class="article-info">
+                <ul class="article-subnav row">
+                    <li class="article-subnav-item col-md-4">
+                        <time>{{ post.post_datetime }}</time>
+                    </li>
+                    <li class="article-subnav-item col-md-4">
+                        <span>posted by:</span>
+{#                        <a href="{% url 'details' post.author_id %}"> {{ post.author }}</a>#}
+                        <a href=""> {{ post.author }}</a>
+                    </li>
+                </ul>
+                <ul class="row">
+                    <div class="col-md-8">
+                        <a class="article-title" href="">{{ post.title }}</a>
+                    </div>
+                </ul>
+            </div>
+
+            <div property="text">
+                <p class="article-img">
+{#                    <a class="article-img" href="">#}
+                        <img src="{{ post.header_img.url }}" class="post-img">
+{#                    </a>#}
+                </p>
+                <p class="article-subnav-item">
+                    {{ post.body }}
+                </p>
+{#                                <div style="font-size: 16px">#}
+{#                                    {% if post.comment_set.count == 0 %}#}
+{#                                        <h6>0 коментари</h6>#}
+{#                                    {% elif post.comment_set.count == 1 %}#}
+{#                                        <h6>1 коментар</h6>#}
+{#                                    {% else %}#}
+{#                                        <h6>{{ post.comment_set.count }} коментари</h6>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+            </div>
+            <p>
+
+            </p>
+        </article>
+
+        {% for comment in post.comment_set %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="comments">
+                            <div class="comments-details">
+                                <span class="total-comments comments-sort">{{ post.comment_set.count }}</span>
+                            </div>
+
+                            <div class="comment-box add-comment">
+                                <span class="commenter-pic">
+                                    <img src="{{ request.user.header_img.url }}" class="img-fluid">
+                                </span>
+
+                                <span class="commenter-name">
+                                    <form method="post" action={% url 'one-post' post.pk %}>
+                                        {% csrf_token %}
+                                        {{ comment_form }}
+                                        <input type="text" placeholder="Add a public comment" name="Add Comment">
+                                        <button type="submit" class="btn btn-default" value="Comment"></button>
+                                        <button type="cancel" class="btn btn-default">Cancel</button>
+                                    </form>
+                                </span>
+                            </div>
+{#                            <div class="comment-box">#}
+{#          <span class="commenter-pic">#}
+{#            <img src="/images/user-icon.jpg" class="img-fluid">#}
+{#          </span>#}
+{#                                <span class="commenter-name">#}
+{#            <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>#}
+{#          </span>#}
+{#                                <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis,#}
+{#                                    pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>#}
+{#                                <div class="comment-meta">#}
+{#                                    <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99#}
+{#                                    </button>#}
+{#                                    <button class="comment-dislike"><i class="fa fa-thumbs-o-down"#}
+{#                                                                       aria-hidden="true"></i> 149#}
+{#                                    </button>#}
+{#                                    <button class="comment-reply reply-popup"><i class="fa fa-reply-all"#}
+{#                                                                                 aria-hidden="true"></i> Reply#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div class="comment-box add-comment reply-box">#}
+{#            <span class="commenter-pic">#}
+{#              <img src="/images/user-icon.jpg" class="img-fluid">#}
+{#            </span>#}
+{#                                    <span class="commenter-name">#}
+{#              <input type="text" placeholder="Add a public reply" name="Add Comment">#}
+{#              <button type="submit" class="btn btn-default">Reply</button>#}
+{#              <button type="cancel" class="btn btn-default reply-popup">Cancel</button>#}
+{#            </span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="comment-box">#}
+{#          <span class="commenter-pic">#}
+{#            <img src="/images/user-icon.jpg" class="img-fluid">#}
+{#          </span>#}
+{#                                <span class="commenter-name">#}
+{#            <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>#}
+{#          </span>#}
+{#                                <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis,#}
+{#                                    pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>#}
+{#                                <div class="comment-meta">#}
+{#                                    <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99#}
+{#                                    </button>#}
+{#                                    <button class="comment-dislike"><i class="fa fa-thumbs-o-down"#}
+{#                                                                       aria-hidden="true"></i> 149#}
+{#                                    </button>#}
+{#                                    <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i>#}
+{#                                        Reply#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div class="comment-box replied">#}
+{#            <span class="commenter-pic">#}
+{#              <img src="/images/user-icon.jpg" class="img-fluid">#}
+{#            </span>#}
+{#                                    <span class="commenter-name">#}
+{#              <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>#}
+{#            </span>#}
+{#                                    <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus#}
+{#                                        quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci#}
+{#                                        iaculis ac.</p>#}
+{#                                    <div class="comment-meta">#}
+{#                                        <button class="comment-like"><i class="fa fa-thumbs-o-up"#}
+{#                                                                        aria-hidden="true"></i> 99#}
+{#                                        </button>#}
+{#                                        <button class="comment-dislike"><i class="fa fa-thumbs-o-down"#}
+{#                                                                           aria-hidden="true"></i> 149#}
+{#                                        </button>#}
+{#                                        <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i>#}
+{#                                            Reply#}
+{#                                        </button>#}
+{#                                    </div>#}
+{#                                    <div class="comment-box replied">#}
+{#              <span class="commenter-pic">#}
+{#                <img src="/images/user-icon.jpg" class="img-fluid">#}
+{#              </span>#}
+{#                                        <span class="commenter-name">#}
+{#                <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>#}
+{#              </span>#}
+{#                                        <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus#}
+{#                                            quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci#}
+{#                                            iaculis ac.</p>#}
+{#                                        <div class="comment-meta">#}
+{#                                            <button class="comment-like"><i class="fa fa-thumbs-o-up"#}
+{#                                                                            aria-hidden="true"></i> 99#}
+{#                                            </button>#}
+{#                                            <button class="comment-dislike"><i class="fa fa-thumbs-o-down"#}
+{#                                                                               aria-hidden="true"></i> 149#}
+{#                                            </button>#}
+{#                                            <button class="comment-reply"><i class="fa fa-reply-all"#}
+{#                                                                             aria-hidden="true"></i> Reply#}
+{#                                            </button>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}

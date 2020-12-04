@@ -27,8 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication',
-    'user_profile',
+    'authentication.apps.AuthenticationConfig',
+    'user_profile.apps.UserProfileConfig',
+    'blog.apps.BlogConfig',
     'bootstrap4',
 ]
 

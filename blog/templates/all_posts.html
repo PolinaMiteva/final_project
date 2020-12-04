@@ -1,0 +1,58 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+    Blog | All posts
+{% endblock title %}
+
+{% block page_content %}
+    {% for post in object_list %}
+
+        <div class="container">
+            <article class="article-post">
+                <div class="article-info">
+                    <ul class="article-subnav row">
+                        <li class="article-subnav-item col-md-4">
+                            <time>{{ post.post_datetime }}</time>
+                        </li>
+                        <li class="article-subnav-item col-md-4">
+                            <span>posted by:</span>
+                            <a href="{% url 'details' post.author_id %}"> {{ post.author }}</a>
+                        </li>
+                    </ul>
+                    <ul class="row">
+                        <div class="col-md-8">
+                            <a class="article-title" href="{% url 'one-post' post.id %}}">
+                                    <h2>{{ post.title }}</h2>
+{#                            </a>#}
+                        </div>
+                    </ul>
+                </div>
+
+                <div property="text">
+                    <p class="article-img">
+                        <a class="article-img" href="{% url 'one-post' post.id %}">
+                            <img src="{{ post.header_img.url }}" class="post-img">
+                        </a>
+                    </p>
+                    <p class="article-subnav-item">
+                        {{ post.body }}
+                    </p>
+                    <div style="font-size: 16px">
+                        {% if post.comment_set.count == 0 %}
+                            <h6>0 коментари</h6>
+                        {% elif post.comment_set.count == 1 %}
+                            <h6>1 коментар</h6>
+                        {% else %}
+                            <h6>{{ post.comment_set.count }} коментари</h6>
+                        {% endif %}
+                    </div>
+                </div>
+                <p>
+
+                </p>
+            </article>
+        </div>
+
+    {% endfor %}
+{% endblock %}
