@@ -9,6 +9,7 @@
     size: 80px;
 }
 
+
 .article-post {
     background: #997072;
     padding: 1.5em 1.5em 0.5em;
@@ -20,6 +21,32 @@
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
     align-content: center;
 }
+
+.comment-body {
+    background: #e6d3de;
+    padding: 1.5em 1.5em 1.5em;
+    max-width: 850px;
+    margin: 15px auto 15px;
+    box-shadow: 0 0 1em #1e221d;
+    max-height: fit-content;
+    color: #1e221d;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    text-align: left;
+}
+
+.comment-info {
+    background: #e6c1c1;
+    padding: 1.5em 1.5em 0.5em;
+    max-width: 850px;
+    margin: 8px auto 8px;
+    box-shadow: 0 0 1em #1e221d;
+    max-height: fit-content;
+    color: #e6c1c1;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    text-align: left;
+    border-bottom: #e6c1c1;
+}
+
 
 .article-info {
     margin-bottom: 40px;
@@ -69,7 +96,7 @@
     margin-right: 8px;
 }
 
-.col-md-6 .col-md-8 {
+.col-md-6 .col-md-8 .col-md-1 {
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
     padding: 0 35px 0 40px;
     border-bottom: black;

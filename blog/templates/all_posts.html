@@ -17,21 +17,21 @@
                         </li>
                         <li class="article-subnav-item col-md-4">
                             <span>posted by:</span>
-                            <a href="{% url 'details' post.author_id %}"> {{ post.author }}</a>
+                            <a href="{% url 'details' post.author_id %}" class="text-decoration-none"> {{ post.author }}</a>
                         </li>
                     </ul>
                     <ul class="row">
                         <div class="col-md-8">
-                            <a class="article-title" href="{% url 'one-post' post.id %}}">
+                            <a class="article-title" href="{% url 'one-post' post.pk %}}" class="text-decoration-none">
                                     <h2>{{ post.title }}</h2>
-{#                            </a>#}
+                            </a>
                         </div>
                     </ul>
                 </div>
 
                 <div property="text">
                     <p class="article-img">
-                        <a class="article-img" href="{% url 'one-post' post.id %}">
+                        <a class="article-img" href="{% url 'one-post' post.pk %}" class="text-decoration-none">
                             <img src="{{ post.header_img.url }}" class="post-img">
                         </a>
                     </p>
@@ -47,10 +47,8 @@
                             <h6>{{ post.comment_set.count }} коментари</h6>
                         {% endif %}
                     </div>
+                    </div>
                 </div>
-                <p>
-
-                </p>
             </article>
         </div>
 

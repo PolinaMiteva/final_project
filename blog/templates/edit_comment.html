@@ -1,0 +1,28 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+    Edit Comment
+{% endblock %}
+
+{% block page_content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h4>Edit comment</h4>
+        <form class="form-group">
+            <p>
+                <h2>{{ request.user }}</h2>
+            </p>
+            <p>
+                <label for="" class="floatLabel">Text</label>
+                {{ form.body }}
+            </p>
+            <p>
+                <input type="submit" value="Update">
+                <input type="submit" value="Cancel">
+
+
+            </p>
+        </form>
+    </form>
+{% endblock %}
