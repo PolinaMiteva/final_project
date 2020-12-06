@@ -3,8 +3,8 @@
 
 {% block page_content %}
     <form action="" method="post">
+    {% csrf_token %}
         <input type="hidden" name="return_url" value="{{ request.GET.next }}">
-        {% csrf_token %}
         {% if form.errors %}
             <span style="margin: 2em; text-align: center">
                 <strong class="form-control">{{form.errors}}</strong>

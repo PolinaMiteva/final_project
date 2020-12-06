@@ -17,9 +17,9 @@ def register(request):
         profile_form = ProfileForm(request.POST)
         if user_form.is_valid():
             user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
+            # profile = profile_form.save()
+            # profile.user = user
+            # profile.save()
             login(request, user)
             messages.success(request, 'Your profile was created successfully!')
             return redirect('index')
@@ -31,10 +31,6 @@ def register(request):
         user_form = RegistrationForm()
 
     return render(request, template_name='register.html', context={'user_form': user_form})
-
-
-def profile_details(request):
-    pass
 
 
 @transaction.atomic
@@ -59,33 +55,6 @@ def profile_update(request):
 def get_redirect_url(params):
     redirect_url = params.get('return_url')
     return redirect_url if redirect_url else 'index'
-
-
-# Login and LogOut - customize more
-# def login_user(request):
-#     if request.method == 'GET':
-#         context = {
-#             'form': LoginForm(),
-#         }
-#
-#         return render(request, 'login.html', context)
-#     else:
-#         login_form = LoginForm(request.POST)
-#         return_url = request.POST.get('return_url', 'index')
-#         if login_form.is_valid():
-#             username = login_form.cleaned_data['username']
-#             password = login_form.cleaned_data['password']
-#             user = authenticate(username=username, password=password)
-#
-#             if user:
-#                 login(request, user)
-#                 return redirect(return_url)
-#
-#         context = {
-#             'form': login_form,
-#         }
-#
-#         return render(request, 'login.html', context)
 
 
 @login_required(login_url='login')

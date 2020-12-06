@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView
-
 from blog.forms import CommentForm
 from blog.models import Post, Comment
 
@@ -16,10 +16,12 @@ class AllBlogPosts(LoginRequiredMixin, ListView):
 
 def one_blog_post(request, pk):
     if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment_form.save()
-            return redirect('one-post', kwargs={'pk': pk})
+        Comment.objects.create(
+            user=request.user,
+            post=Post.objects.get(pk=pk),
+            body=request.POST['body'],
+        )
+        return redirect('one-post', pk)
 
     post = Post.objects.get(pk=pk)
     all_comments = Comment.objects.filter(post_id=pk)
@@ -55,4 +57,12 @@ def edit_comment(request, pk):
 
 
 def delete_comment(request, pk):
-    pass
+    if request.method == "POST":
+        instance = Comment.objects.get(pk=pk)
+        instance.delete()
+        next = request.GET.get('next', reverse('all-blog-posts'))
+        return HttpResponseRedirect(next)
+
+    elif request.method == "GET":
+        return render(request, 'delete_comment.html')
+
