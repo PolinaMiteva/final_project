@@ -2,10 +2,9 @@
 {% load static %}
 
 {% block page_content %}
-    <form action="{% url 'register' %}" method="post">
+    <form class="form-group container-all" action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <h4>Register</h4>
-        <form class="form-group">
             {% if user_form.errors %}
                 {{ user_form.errors }}
             {% endif %}
@@ -25,11 +24,12 @@
             </p>
             <p>
                 <input type="submit" value="Create My Account" id="submit">
-                <span style="margin: 2em; text-align: center">
-                    <strong>You have an account?</strong>
-                <span><a href="{% url 'login' %}">Log in</a></span>
-            </span>
             </p>
-        </form>
+            <p>
+                <span>
+                    <strong>You have an account?</strong>
+                    <a href="{% url 'register' %}">Log in</a>
+                </span>
+            </p>
     </form>
 {% endblock %}

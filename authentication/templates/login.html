@@ -3,29 +3,34 @@
 
 {% block page_content %}
     <form action="" method="post">
-    {% csrf_token %}
-        <input type="hidden" name="return_url" value="{{ request.GET.next }}">
-        {% if form.errors %}
-            <span style="margin: 2em; text-align: center">
-                <strong class="form-control">{{form.errors}}</strong>
+        <div class="form-group container-all">
+            {% csrf_token %}
+            <input type="hidden" name="return_url" value="{{ request.GET.next }}">
+            {% if form.errors %}
+                <span style="margin: 2em; text-align: center">
+                <strong class="form-control">{{ form.errors }}</strong>
             </span>
-        {% endif %}
+            {% endif %}
 
-        <h4>Log In</h4>
-        <p>
-            <label for="Username" class="floatLabel">Username</label>
-            {{ form.username }}
-        </p>
-        <p>
-            <label for="password" class="floatLabel">Password</label>
-            {{ form.password }}
-        </p>
-        <p>
-            <input type="submit" value="Log In" id="submit">
-            <span style="margin: 2em; text-align: center">
-                <strong>You don't have an account?</strong>
-                <span><a href="{% url 'register' %}">Register</a></span>
-            </span>
-        </p>
+            <h4>Log In</h4>
+            <p>
+                <label for="Username" class="floatLabel">Username</label>
+                {{ form.username }}
+            </p>
+            <p>
+                <label for="password" class="floatLabel">Password</label>
+                {{ form.password }}
+            </p>
+            <p>
+                <input type="submit" value="Log In" id="submit">
+            </p>
+            <p>
+                <span>
+                    <strong>You don't have an account?</strong>
+                    <a href="{% url 'register' %}">Register</a>
+                </span>
+            </p>
+        </div>
     </form>
+    </div>
 {% endblock %}

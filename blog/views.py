@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -14,6 +15,7 @@ class AllBlogPosts(LoginRequiredMixin, ListView):
     paginate_by = 4
 
 
+@login_required()
 def one_blog_post(request, pk):
     if request.method == 'POST':
         Comment.objects.create(
@@ -36,6 +38,7 @@ def one_blog_post(request, pk):
     return render(request, 'one_post.html', context)
 
 
+@login_required()
 def edit_comment(request, pk):
     if request.method == "POST":
         instance = Comment.objects.get(pk=pk)
@@ -56,6 +59,7 @@ def edit_comment(request, pk):
     return render(request, template_name=edit_comment, context={'form': form})
 
 
+@login_required()
 def delete_comment(request, pk):
     if request.method == "POST":
         instance = Comment.objects.get(pk=pk)

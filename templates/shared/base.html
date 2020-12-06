@@ -25,18 +25,35 @@
 </head>
 
 <body>
+<header>
 {% block navbar %}
     {% include 'shared/nav_bar.html' %}
 {% endblock navbar %}
+</header>
 
-
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% block page_content %}
 {% endblock page_content %}
+</main>
 
-{% block footer_info %}
-    {% include 'shared/footer.html' %}
-{% endblock footer_info %}
-
+<footer>
+    {% block footer_info %}
+        {% include 'shared/footer.html' %}
+    {% endblock footer_info %}
+</footer>
 </body>
 
 

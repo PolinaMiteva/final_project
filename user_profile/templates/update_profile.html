@@ -1,12 +1,13 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
+
 {% block title %}
     Profile update
 {% endblock %}
 
 {% block page_content %}
-    <form action="" method="post" enctype="multipart/form-data">
+    <form class="container-all" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h4>Edit profile</h4>
         <form class="form-group">
@@ -37,10 +38,12 @@
 
             <p>
                 <input type="submit" value="Update" id="submit">
-                <span style="margin: 2em; text-align: center">
+            </p>
+            <p>
+                <span>
                     <strong>You have an account?</strong>
-                <span><a href="{% url 'login' %}">Log in</a></span>
-
+                    <a href="{% url 'login' %}">Log in</a>
+                </span>
             </p>
         </form>
     </form>

@@ -7,50 +7,57 @@
 
 {% block page_content %}
     {% for post in object_list %}
-
-        <div class="container">
-            <article class="article-post">
-                <div class="article-info">
-                    <ul class="article-subnav row">
-                        <li class="article-subnav-item col-md-4">
-                            <time>{{ post.post_datetime }}</time>
-                        </li>
-                        <li class="article-subnav-item col-md-4">
-                            <span>posted by:</span>
-                            <a href="{% url 'details' post.author_id %}" class="text-decoration-none"> {{ post.author }}</a>
-                        </li>
-                    </ul>
-                    <ul class="row">
-                        <div class="col-md-8">
-                            <a class="article- text-decoration-none" href="{% url 'one-post' post.pk %}">
-                                    <h2>{{ post.title }}</h2>
-                            </a>
+        <div class="article-general">
+            <div class="article-info container">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span class="subnav-divider">
+                                    <time>{{ post.post_datetime }}</time>
+                                </span>
+                            </div>
+                            <div class="col-sm-6">
+                                <span class="subnav-divider">
+                                    <span>posted by:</span>
+                                    <a href="{% url 'details' post.author_id %}" class="text-decoration-none"> {{ post.author }}</a>
+                                </span>
+                            </div>
+                            <div class="article-img">
+                                <a href="{% url 'one-post' post.pk %}" class="text-decoration-none">
+                                    <img src="{{ post.header_img.url }}" class="post-img" alt="">
+                                </a>
+                            </div>
                         </div>
-                    </ul>
-                </div>
+                    </div>
 
-                <div property="text">
-                    <p class="article-img">
-                        <a class="article-img" href="{% url 'one-post' post.pk %}" class="text-decoration-none">
-                            <img src="{{ post.header_img.url }}" class="post-img">
-                        </a>
-                    </p>
-                    <p class="article-subnav-item">
-                        {{ post.body }}
-                    </p>
-                    <div style="font-size: 16px">
-                        {% if post.comment_set.count == 0 %}
-                            <h6>0 коментари</h6>
-                        {% elif post.comment_set.count == 1 %}
-                            <h6>1 коментар</h6>
-                        {% else %}
-                            <h6>{{ post.comment_set.count }} коментари</h6>
-                        {% endif %}
-                    </div>
+                    <div class="col">
+                        <p class="article-title">
+                            <a class="text-decoration-none" href="{% url 'one-post' post.pk %}">
+                                <h2>{{ post.title }}</h2>
+                            </a>
+                        </p>
+
+                        <p class="">
+                            {{ post.body }}
+                        </p>
+
+                        <div class="comments-footer">
+                            {% if post.comment_set.count == 0 %}
+                                <h6>0 коментари</h6>
+                            {% elif post.comment_set.count == 1 %}
+                                <h6>1 коментар</h6>
+                            {% else %}
+                                <h6>{{ post.comment_set.count }} коментарa</h6>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </article>
+            </div>
         </div>
+    </div>
+</article>
+
 
     {% endfor %}
 {% endblock %}
