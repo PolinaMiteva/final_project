@@ -1,0 +1,28 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+    Energy massage
+{% endblock %}
+
+{% block page_content %}
+
+    <article class="article-general article-post">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mr-auto">
+                    <p>Какво е енергийният масаж?</p>
+{#                    <p>Присъствен</p>#}
+                    <p>
+                        {% lorem %}
+                    </p>
+
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'images/energy_massage.jpg' %}" alt="img" id="img">
+                </div>
+            </div>
+        </div>
+
+    </article>
+{% endblock page_content %}

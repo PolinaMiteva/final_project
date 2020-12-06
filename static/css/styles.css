@@ -1,99 +1,15 @@
 .index-img {
-    /*padding-top: 25px;*/
-    /*padding-bottom: 25px;*/
+
     margin-top: 80px;
     margin-left: 15px;
     margin-bottom: 1em;
-    /*width: 1000px;*/
-    /*height: 1000px;*/
     size: 80px;
 }
-
-
-.article-post {
-    background: #997072;
-    padding: 1.5em 1.5em 0.5em;
-    max-width: 850px;
-    margin: 80px auto 80px;
-    box-shadow: 0 0 1em #1e221d;
-    max-height: fit-content;
-    color: #e6c1c1;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    align-content: center;
-}
-
-.comment-body {
-    background: #e6d3de;
-    padding: 1.5em 1.5em 1.5em;
-    max-width: 850px;
-    margin: 15px auto 15px;
-    box-shadow: 0 0 1em #1e221d;
-    max-height: fit-content;
-    color: #1e221d;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    text-align: left;
-}
-
-.comment-info {
-    background: #e6c1c1;
-    padding: 1.5em 1.5em 0.5em;
-    max-width: 850px;
-    margin: 8px auto 8px;
-    box-shadow: 0 0 1em #1e221d;
-    max-height: fit-content;
-    color: #e6c1c1;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    text-align: left;
-    border-bottom: #e6c1c1;
-}
-
-
-.article-info {
-    margin-bottom: 40px;
-    font-size: 20px;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-}
-
-.article-subnav {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 40px;
-    padding: 0;
-    list-style: none;
-}
-
-.article-title {
-    font-size: 36px;
-    line-height: 1.2;
-    color: #262626;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 400;
-}
-
-.article-subnav-item {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-size: 14px;
-    color: #e6c1c1;
-}
-
 
 .post-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-.custom-nav, dropdown-item {
-    font-family: papyrus;
-    font-size: 20px;
-    padding-leftt: 100px;
-    padding-right: 150px;
-    background-color: #998394;
-    height: 60px;
-}
-
-.nav-item {
-    margin-right: 8px;
 }
 
 .col-md-6 .col-md-8 .col-md-1 {
@@ -104,16 +20,31 @@
     font-size: large;
 }
 
+.custom-nav, dropdown-item {
+    font-family: papyrus;
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #99838e;
+    height: 60px;
+}
+
+.nav-item {
+    margin-right: 8px;
+}
+
+a {
+    color: #616161;
+    text-decoration: none;
+
+}
 
 body {
-    /*background: #dddddd;*/
-    font-family: sans-serif;
-    /*font-size: 10px*/
-    background-image: url('/media/background-pettern.png');
-    /*opacity: 0.4;*/
+    /*font-family: sans-serif;*/
+    background-image: url('/static/images/moroccan-flower.png');
     height: 100%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 

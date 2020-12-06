@@ -1,0 +1,95 @@
+.article-general {
+    padding: 40px 40px 40px;
+    /*max-width: auto;*/
+    margin: 150px;
+    max-height: fit-content;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    align-content: center;
+    border-radius: 25px;
+}
+
+.article-post {
+    background: #e6e4e5;
+    box-shadow: 0 0 1em #1e221d;
+    color: #616161;
+    display: block;
+
+}
+
+.comment-body {
+    background: #e6d3de;
+    padding: 1.5em 1.5em 1.5em;
+    max-width: 850px;
+    margin: 15px auto 15px;
+    box-shadow: 0 0 1em #1e221d;
+    max-height: fit-content;
+    color: #1e221d;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    text-align: left;
+}
+
+.comment-info {
+    background: #e6c1c1;
+    padding: 1.5em 1.5em 0.5em;
+    max-width: 850px;
+    margin: 8px auto 8px;
+    box-shadow: 0 0 1em #1e221d;
+    max-height: fit-content;
+    color: #e6c1c1;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    text-align: left;
+    border-bottom: #e6c1c1;
+}
+
+
+.article-info {
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+}
+
+.article-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 40px;
+    padding: 0;
+    list-style: none;
+}
+
+.article-title {
+    font-size: 36px;
+    line-height: 1.2;
+    color: #262626;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-weight: 400;
+}
+
+.article-subnav-item {
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-size: 14px;
+    color: #e6c1c1;
+}
+
+#logo {
+    margin: 150px 20px 150px 20px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-align: center!important;
+    cursor: pointer;
+    font-size: 22px;
+    color: #3c3c3c;
+    width: 1280px;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+#img {
+    width: auto;
+    vertical-align: middle;
+    horiz-align: right;
+    max-width: 100%;
+    height: auto;
+}

@@ -2,52 +2,49 @@
 
 <nav class="navbar navbar-expand-lg navbar-light custom-nav">
     <a class="navbar-brand" href="{% url 'index' %}">
-        <img idsrc="{% static 'images/lotus-26597.png' %}" width="100" height="50" alt="Logo">
+        <img src="{% static 'images/lotus-navbar.png' %}" width="80" height="40" alt="Logo">
     </a>
 
     <div class="custom-nav collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto">
-            {#                #make active if on page#}
             <li class="nav-item">
-                <a class="nav-link" href="#">The practice <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="{% url 'the-practice' %}">The practice</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Practices
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#" style="font-size: 22px">Energy cleansing</a>
-                    <a class="dropdown-item" href="#" style="font-size: 22px">Energy massage</a>
-                    {#                        <a class="dropdown-item" href="#">Something else here</a>#}
+                    <a class="dropdown-item" href="{% url 'nrg-cleansing' %}" >Energy cleansing</a>
+                    <a class="dropdown-item" href="{% url 'nrg-massage' %}" >Energy massage</a>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="{% url 'all-blog-posts' %}">Blog</a>
             </li>
-
         </ul>
     </div>
 
     <div class="navbar-nav">
         <ul class="navbar-nav">
-            {#             #make active if on page#}
             {% if not request.user.is_authenticated %}
-                <li class="nav-item navbar-right" style="margin-right: 10px">
+                <li class="nav-item navbar-right" style="margin-right: 15px">
                     <a class="nav-link" href="{% url 'register' %}"> Register </a>
                 </li>
                 <li class="nav-item">
-
                     <a class="nav-link " href="{% url 'login' %}"> Log In </a>
                 </li>
             {% elif request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link " href=""> New post </a>
+                </li>
+                {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                        Welcome, {{ request.user.username }}!
+                        Welcome, {{ request.user.username }} !
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" style="font-size: 22px" href="{% url 'details' request.user.pk %}">Details</a>
