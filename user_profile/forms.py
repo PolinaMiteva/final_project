@@ -2,46 +2,36 @@ from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 
+from Django_fnl_project.mixins import BootstrapFormControl
 from .models import Profile
 
 
-class ProfileForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm, BootstrapFormControl):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.form_control()
-
-    def form_control(self):
-        for _, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
+        self.setup_form()
 
     class Meta:
         model = Profile
         fields = 'picture', 'phone_number'
 
 
-class UpdateUser(UserChangeForm):
+class UpdateUser(UserChangeForm, BootstrapFormControl):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.form_control()
-        # self.fields['username'].widget.attrs.update(disabled=True)
+        self.setup_form()
 
-    def form_control(self):
-        for _, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
 
     class Meta:
         model = User
         fields = 'first_name', 'last_name', 'email',
 
 
-class UpdateProfile(UserChangeForm):
+class UpdateProfile(UserChangeForm, BootstrapFormControl):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.form_control()
+        self.setup_form()
 
-    def form_control(self):
-        for _, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
 
     class Meta:
         model = Profile

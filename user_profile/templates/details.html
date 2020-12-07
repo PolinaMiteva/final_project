@@ -13,9 +13,11 @@
                 <div class="col-md-5">
                     <img src="{{ user.profile.picture.url }}"
                          alt="No picture" style="width: 350px; height: 350px; margin-top: 28px; margin-bottom: 28px; ">
-                    <div class="row" style="margin: 20px 98px  20px 98px  ">
-                        <button class="btn btn-outline-light" value="Edit profile"><a href="{% url 'update-profile' user.pk %}">Edit profile</a></button>
-                    </div>
+                    {% if request.user.pk == user.pk %}
+                        <div class="row" style="margin: 20px 98px  20px 98px  ">
+                            <button class="btn btn-outline-light" value="Edit profile"><a href="{% url 'update-profile' user.pk %}">Edit profile</a></button>
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="col-md-6">

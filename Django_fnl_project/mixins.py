@@ -1,4 +1,4 @@
-class BootstrapFormControl:
+class BootstrapFormControl():
     def setup_form(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.form_control()

@@ -49,7 +49,7 @@
                     {{ comment.comment_datetime }}
                 </div>
                 <div class="col-md-1">
-                    <a href="{% url 'details' comment.user_id %}">{{ comment.user }}</a>
+                    <a href="{% url 'details' comment.user.pk %}">{{ comment.user }}</a>
                 </div>
             </div>
 

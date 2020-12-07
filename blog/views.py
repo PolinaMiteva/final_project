@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView
+
+from Django_fnl_project.decorators import required_user
 from blog.forms import CommentForm
 from blog.models import Post, Comment
 
@@ -15,7 +17,8 @@ class AllBlogPosts(LoginRequiredMixin, ListView):
     paginate_by = 4
 
 
-@login_required()
+
+@login_required
 def one_blog_post(request, pk):
     if request.method == 'POST':
         Comment.objects.create(
@@ -38,7 +41,8 @@ def one_blog_post(request, pk):
     return render(request, 'one_post.html', context)
 
 
-@login_required()
+@required_user
+@login_required
 def edit_comment(request, pk):
     if request.method == "POST":
         instance = Comment.objects.get(pk=pk)
@@ -59,7 +63,8 @@ def edit_comment(request, pk):
     return render(request, template_name=edit_comment, context={'form': form})
 
 
-@login_required()
+@required_user
+@login_required
 def delete_comment(request, pk):
     if request.method == "POST":
         instance = Comment.objects.get(pk=pk)
@@ -69,4 +74,3 @@ def delete_comment(request, pk):
 
     elif request.method == "GET":
         return render(request, 'delete_comment.html')
-

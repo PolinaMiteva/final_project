@@ -1,30 +1,23 @@
 from django import forms
+
+from Django_fnl_project.mixins import BootstrapFormControl
 from blog.models import Post, Comment
 
 
-class PostForm(forms.ModelForm):
+class PostForm(forms.ModelForm, BootstrapFormControl):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.form_control()
-
-    def form_control(self):
-        for _, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
+        self.setup_form()
 
     class Meta:
         model = Post
         fields = '__all__'
 
 
-class CommentForm(forms.ModelForm):
+class CommentForm(forms.ModelForm, BootstrapFormControl):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.form_control()
-        # self.fields['body'].widget.attrs.update({'label': 'Insert your comment here...'})
-
-    def form_control(self):
-        for _, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
+        self.setup_form()
 
     class Meta:
         model = Comment

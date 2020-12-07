@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db import transaction
 from django.shortcuts import redirect, render
 from django.contrib import messages
+
+from Django_fnl_project.decorators import required_user
 from authentication.forms import RegistrationForm, LoginForm
 from user_profile.forms import ProfileForm
 from django.contrib.auth.views import LoginView
@@ -39,29 +41,6 @@ def logout_user(request):
     return redirect('login')
 
 
-@transaction.atomic
-def profile_update(request):
-    if request.method == 'POST':
-        user_form = RegistrationForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
-            messages.success(request, 'Your profile was successfully updated.')
-            return redirect('index')
-    elif request.method == 'GET':
-        user_form = RegistrationForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user)
-
-    return render(request, 'update_profile.html',
-                  context={'user_form': user_form, 'profile_form': profile_form})
-
-
-# def get_redirect_url(params):
-#     redirect_url = params.get('return_url')
-#     return redirect_url if redirect_url else 'index'
 
 
 
