@@ -6,12 +6,6 @@
     size: 80px;
 }
 
-.post-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .col-md-6 .col-md-8 .col-md-1 {
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
     padding: 0 35px 0 40px;
@@ -56,6 +50,23 @@
     box-shadow: 0 0 1em #1e221d;
     max-height: fit-content;
     color: #616161;
+}
+
+
+#logo {
+    margin: 150px 20px 150px 20px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-align: center!important;
+    cursor: pointer;
+    font-size: 22px;
+    color: #3c3c3c;
+    width: 1280px;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
 }
 
 a {

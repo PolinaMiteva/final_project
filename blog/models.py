@@ -14,7 +14,6 @@ class Post(models.Model):
         return f'{self.title} | {self.author}'
 
 
-
 class Comment(models.Model):
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
