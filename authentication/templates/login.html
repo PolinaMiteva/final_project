@@ -7,7 +7,7 @@
             {% csrf_token %}
             <input type="hidden" name="return_url" value="{{ request.GET.next }}">
             {% if form.errors %}
-                <span style="margin: 2em; text-align: center">
+{#                <span style="margin: 2em; text-align: center; display: block">#}
                 <strong class="form-control">{{ form.errors }}</strong>
             </span>
             {% endif %}

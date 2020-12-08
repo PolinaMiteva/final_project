@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView
 
-from Django_fnl_project.decorators import required_user
+from Django_fnl_project.decorators import required_user, required_user_for_comment
 from blog.forms import CommentForm
 from blog.models import Post, Comment
 
@@ -14,8 +14,7 @@ from blog.models import Post, Comment
 class AllBlogPosts(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'all_posts.html'
-    paginate_by = 4
-
+    paginate_by = 3
 
 
 @login_required
@@ -41,7 +40,7 @@ def one_blog_post(request, pk):
     return render(request, 'one_post.html', context)
 
 
-@required_user
+@required_user_for_comment
 @login_required
 def edit_comment(request, pk):
     if request.method == "POST":
@@ -63,7 +62,7 @@ def edit_comment(request, pk):
     return render(request, template_name=edit_comment, context={'form': form})
 
 
-@required_user
+@required_user_for_comment
 @login_required
 def delete_comment(request, pk):
     if request.method == "POST":

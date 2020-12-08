@@ -19,7 +19,7 @@ def register(request):
             user = user_form.save()
             login(request, user)
             messages.success(request, 'Your profile was created successfully!')
-            return redirect('index')
+            return redirect('details', pk=user.pk)
         else:
             user_form = RegistrationForm(request.POST)
             messages.warning(request, 'Correct the errors bellow.')

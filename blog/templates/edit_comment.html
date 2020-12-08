@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block page_content %}
-    <form action="" method="post">
-        {% csrf_token %}
+    <div class="container container-all">
         <h4>Edit comment</h4>
         <form class="form-group" method="post">
+            {% csrf_token %}
             <p>
                 <h2>{{ request.user }}</h2>
             </p>
@@ -19,10 +19,8 @@
             </p>
             <p>
                 <input type="submit" value="Update">
-                <input type="submit" value="Cancel">
-
-
             </p>
         </form>
-    </form>
+        <input type="submit" value="Cancel" onclick="window.location.href='{{ request.GET.next }}';">
+    </div>
 {% endblock %}
