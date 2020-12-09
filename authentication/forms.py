@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from django.contrib.auth.views import PasswordContextMixin
+from django.views.generic import FormView
 from Django_fnl_project.mixins import BootstrapFormControl
 from user_profile.models import Profile
 from django.contrib.auth.models import User
@@ -20,4 +21,5 @@ class LoginForm(AuthenticationForm, BootstrapFormControl):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setup_form()
+
 

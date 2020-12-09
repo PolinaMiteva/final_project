@@ -1,14 +1,16 @@
 from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db import transaction
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 from Django_fnl_project.decorators import required_user
 from authentication.forms import RegistrationForm, LoginForm
 from user_profile.forms import ProfileForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordChangeDoneView
 
 
 # @transaction.atomic
@@ -35,16 +37,17 @@ class LogInView(LoginView):
     form_class = LoginForm
 
 
+class ChangePassView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'password_change.html'
+    success_url = reverse_lazy('pass_change_success')
+
+
+class PassChangedSuccess(LoginRequiredMixin, PasswordChangeDoneView):
+    template_name = 'pass_changed_success.html'
+    title = "Your password was changed successfully!"
+
+
 @login_required(login_url='login')
 def logout_user(request):
     logout(request)
     return redirect('login')
-
-
-
-
-
-
-
-
-

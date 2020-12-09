@@ -1,15 +1,19 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
+{% block title %}
+    Log in
+{% endblock title %}
+
 {% block page_content %}
     <form action="" method="post">
         <div class="form-group container-all">
             {% csrf_token %}
             <input type="hidden" name="return_url" value="{{ request.GET.next }}">
             {% if form.errors %}
-{#                <span style="margin: 2em; text-align: center; display: block">#}
-                <strong class="form-control">{{ form.errors }}</strong>
-            </span>
+                <span style="margin: 2em; text-align: center; display: block">
+                    <strong class="form-control">{{ form.errors }}</strong>
+                </span>
             {% endif %}
 
             <h4>Log In</h4>

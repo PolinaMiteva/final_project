@@ -1,13 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.views.generic import ListView, DetailView, UpdateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView, FormView
 
 from Django_fnl_project.decorators import required_user, required_user_for_comment
-from blog.forms import CommentForm
+from blog.forms import CommentForm, PostForm
 from blog.models import Post, Comment
 
 
@@ -73,3 +74,19 @@ def delete_comment(request, pk):
 
     elif request.method == "GET":
         return render(request, 'delete_comment.html')
+
+
+class NewPostView(FormView):
+    form_class = PostForm
+    template_name = 'new_post.html'
+    success_url = reverse_lazy('all-blog-posts')
+
+    def get_context_data(self, **kwargs):
+        context = super(NewPostView, self).get_context_data(**kwargs)
+        context['next'] = self.request.GET.get('next', reverse('index'))
+        return context
+
+    def form_valid(self, form):
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(self.get_success_url())

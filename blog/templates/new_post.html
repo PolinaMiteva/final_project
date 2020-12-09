@@ -1,0 +1,27 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}
+    Write new blog post
+{% endblock title %}
+
+{% block page_content %}
+    <div class="form-group container" id="container-details">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if errors %}
+                <span style="margin: 2em; text-align: center; display: block">
+                    <strong class="form-control">{{ errors }}</strong>
+                </span>
+            {% endif %}
+
+            <h4>White a post</h4>
+            <p>
+                {% bootstrap_form form %}
+            </p>
+            <input type="submit" value="Submit">
+        </form>
+            <input type="button" value="Cancel" onclick="window.location.href='{{ next }}';">
+    </div>
+{% endblock %}
