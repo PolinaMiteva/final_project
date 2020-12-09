@@ -41,8 +41,8 @@ def one_blog_post(request, pk):
     return render(request, 'one_post.html', context)
 
 
-@required_user_for_comment
 @login_required
+@required_user_for_comment
 def edit_comment(request, pk):
     if request.method == "POST":
         instance = Comment.objects.get(pk=pk)
@@ -63,8 +63,8 @@ def edit_comment(request, pk):
     return render(request, template_name=edit_comment, context={'form': form})
 
 
-@required_user_for_comment
 @login_required
+@required_user_for_comment
 def delete_comment(request, pk):
     if request.method == "POST":
         instance = Comment.objects.get(pk=pk)
