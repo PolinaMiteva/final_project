@@ -7,13 +7,11 @@
 
 {% block page_content %}
     <form action="" method="post">
+        {% csrf_token %}
         <div class="form-group container-all">
-            {% csrf_token %}
             <input type="hidden" name="return_url" value="{{ request.GET.next }}">
             {% if form.errors %}
                 {{ form.errors }}
-
-                </p>
             {% endif %}
 
             <h4>Log In</h4>
