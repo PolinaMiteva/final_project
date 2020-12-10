@@ -21,9 +21,14 @@ from user_profile.models import Profile
 
 @login_required
 def details(request, pk=None):
-    # user = request.user if pk is None else User.objects.get(pk=pk)
+
     user = User.objects.get(pk=pk)
-    return render(request, 'details.html', context={'user': user})
+    context = {
+        'user': user,
+        'can_edit': True if request.user.pk == user.pk or user.is_superuser else False,
+    }
+
+    return render(request, 'details.html', context=context)
 
 
 @required_user

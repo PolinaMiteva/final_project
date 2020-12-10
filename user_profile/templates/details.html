@@ -13,7 +13,7 @@
                 <div class="col-md-5">
                     <img src="{{ user.profile.picture.url }}"
                          alt="No picture" style="width: 350px; height: 350px; margin-top: 28px; margin-bottom: 28px; ">
-                    {% if request.user.pk == user.pk or request.user.is_superuser%}
+                    {% if can_edit %}
                         <div class="row" style="margin: 20px 98px  20px 98px  ">
                             <button class="btn btn-outline-light" value="Edit profile"><a href="{% url 'update-profile' user.pk %}">Edit profile</a></button>
                         </div>

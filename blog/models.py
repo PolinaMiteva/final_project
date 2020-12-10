@@ -11,7 +11,7 @@ class Post(models.Model):
     post_datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.title} | {self.author}'
+        return f'{self.author} | {self.title}'
 
 
 class Comment(models.Model):
@@ -21,4 +21,4 @@ class Comment(models.Model):
     comment_datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.post.title} | {self.user.username}'
+        return f'{self.user.username} | {self.post.title}'
