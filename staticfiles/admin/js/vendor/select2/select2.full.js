@@ -6744,7 +6744,7 @@ S2.define('jquery.select2',[
   'jquery',
   'jquery-mousewheel',
 
-  './select2/Django_fnl_project',
+  './select2/core',
   './select2/defaults',
   './select2/utils'
 ], function ($, _, Select2, Defaults, Utils) {

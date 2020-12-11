@@ -1,7 +1,36 @@
-$ git .gitignore
-.DS_Store
-.idea/
+Skip to content
+Why GitHub? 
+Team
+Enterprise
+Explore 
+Marketplace
+Pricing 
+Search
 
+Sign in
+Sign up
+Minkov
+/
+petstagram
+120
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Join GitHub today
+GitHub is home to over 50 million developers working together to host and review code, manage projects, and build software together.
+
+petstagram/.gitignore
+@Minkov
+Minkov Initial commit
+Latest commit f629726 8 days ago
+ History
+ 1 contributor
+129 lines (105 sloc)  1.76 KB
+  
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -131,3 +160,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

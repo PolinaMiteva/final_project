@@ -65,7 +65,6 @@ def edit_comment(request, pk):
     return render(request, template_name=edit_comment, context={'form': form})
 
 
-
 @login_required
 @required_user_for_comment
 def delete_comment(request, pk):
