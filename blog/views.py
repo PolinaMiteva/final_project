@@ -52,7 +52,7 @@ def edit_comment(request, pk):
         if form.data['body'] != current_body:
             body = form.data['body']
             instance.body = body
-        instance.save()
+            instance.save()
         next = request.GET.get('next', reverse('all-blog-posts'))
         return HttpResponseRedirect(next)
 
@@ -92,3 +92,30 @@ class NewPostView(GroupRequiredMixin, LoginRequiredMixin, FormView):
         if form.is_valid():
             form.save()
             return super().form_valid(form)
+
+
+#!!!!!!!!! - group required decorator
+@login_required()
+def edit_post(request, pk):
+    if request.method == "GET":
+        instance = Post.objects.get(pk=pk)
+        context = {
+            'form': PostForm(instance=instance),
+            'next': request.GET.get('next', reverse('all-blog-posts')),
+        }
+        return render(request, 'edit_post.html', context)
+
+    elif request.method == "POST":
+        instance = Post.objects.get(pk=pk)
+        form = PostForm(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            next = request.GET.get('next', reverse('all-blog-posts'))
+            return HttpResponseRedirect(next)
+
+    context = {
+        'form': PostForm(request.POST, instance=instance),
+    }
+    return render(request, 'edit_post.html', context)
+
+

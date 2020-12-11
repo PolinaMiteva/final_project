@@ -37,7 +37,7 @@
                     <a class="nav-link " href="{% url 'login' %}"> Log In </a>
                 </li>
             {% elif request.user.is_authenticated %}
-                {% if request.user.is_authenticated and request.user.is_superuser or request.user.is_authenticated and request.user|has_group:"writers"%}
+                {% if request.user.is_authenticated and request.user.is_superuser or request.user.is_authenticated and request.user|has_group:"writers" %}
                 <li class="nav-item">
                     <a class="nav-link " href="{% url 'new_post' %}?next={{ request.path }}"> New post </a>
                 </li>

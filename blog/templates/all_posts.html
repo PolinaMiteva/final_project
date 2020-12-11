@@ -1,8 +1,10 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load filters %}
+
 
 {% block title %}
-    Blog | All posts
+    All posts
 {% endblock title %}
 
 {% block page_content %}
@@ -10,69 +12,62 @@
         <div class="article-general">
             <div class="article-info container">
                 <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <span class="subnav-divider">
-                                    <time>{{ post.post_datetime }}</time>
-                                </span>
-                            </div>
-                            <div class="col-sm-6">
-                                <span class="subnav-divider">
-                                    <span>posted by:</span>
-                                    <a href="{% url 'details' post.author_id %}"
-                                       class="text-decoration-none"> {{ post.author }}</a>
-                                </span>
-                            </div>
-                            {% if post.header_img %}
-                                <div class="article-img">
-                                <a href="{% url 'one-post' post.pk %}" class="text-decoration-none">
-                                    <img src="{{ post.header_img.url }}" class="post-img" alt=""></a>
-                            {% endif %}
-                            </div>
+
+                    <div class="col-md-3">
+                        <span class="subnav-divider">
+                            <time>{{ post.post_datetime }}</time>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="subnav-divider">
+                            <span>posted by:</span>
+                            <a href="{% url 'details' post.author_id %}"
+                               class="text-decoration-none"> {{ post.author }}</a>
+                        </span>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="" style="font-weight: bold">
+                            <a class="text-decoration-none" href="{% url 'one-post' post.pk %}">
+                                {{ post.title }}
+                            </a>
                         </div>
                     </div>
 
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <p class="article-title ">
-                                    <a class="text-decoration-none" href="{% url 'one-post' post.pk %}">
-                                        <h2>{{ post.title }}</h2>
-                                    </a>
-                                </p>
-
-                                <p class="">
-                                    {{ post.body }}
-                                </p>
-                            </div>
-
-                            <div class="col comments-footer">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="{% url 'one-post' post.pk %}" style="margin-bottom: 10px">Прочети
-                                            повече...</a>
-                                    </div>
-                                    <div class="col">
-                                        {% if post.comment_set.count == 0 %}
-                                            <h6>0 коментари</h6>
-                                        {% elif post.comment_set.count == 1 %}
-                                            <h6>1 коментар</h6>
-                                        {% else %}
-                                            <h6>{{ post.comment_set.count }} коментарa</h6>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
+                    {% if request.user.is_superuser or request.user|has_group:"writers" %}
+                        <div class="col-md-3">
+                            <span class="subnav-divider">
+                                <a class="text-decoration-none" href="{% url 'edit_post' post.pk %}?next={{ request.path }}"
+                                   style="margin-bottom: 10px">Edit post</a>
+                            </span>
                         </div>
-                    </div>
-
+                    {% endif %}
                 </div>
+            </div>
+
+            <div class="row all-post-body">
+                <p class="">
+                    {{ post.body }}
+                </p>
+            </div>
+
+            <div class="row all-comments-footer" style="">
+                    <div class="col-lg-6 mr-auto">
+                    </div>
+
+                    <div class="col">
+                        <span>
+                            {{ post.comment_set.count }} comments
+                        </span>
+
+                        <span class="" style="margin-left: 10px">
+                            <a href="{% url 'one-post' post.pk %}" style="margin-bottom: 10px">Read more...</a>
+                        </span>
+                    </div>
             </div>
         </div>
     {% endfor %}
-
-{#   <div class="container-all">#}
-       {% include 'shared/pagination.html' %}
-{#   </div>#}
 {% endblock %}
+
+    {% include 'shared/pagination.html' %}
+

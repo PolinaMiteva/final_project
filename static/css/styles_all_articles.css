@@ -4,7 +4,8 @@
     margin: 30px;
     max-height: fit-content;
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    align-content: center;
+    text-align: center !important;
+    align-content: center !important;
     /*border-radius: 25px;*/
     background: #e6e4e5;
 }
@@ -24,12 +25,28 @@
     font-size: 14px;
     margin-right: 15px;
     /*padding-right: 15px;*/
-    border-right-style: ridge;
+    /*border-right-style: ridge;*/
+}
+
+.all-post-body {
+    padding: 30px 30px 40px 30px;
+    font-size: 18px;
+    margin: 15px;
+    max-width: 80%;
+}
+
+.all-comments-footer {
+    padding: 30px;
+    font-size: 14px;
+}
+
+.subnav-comments-footer {
+    text-align: justify-all;
 }
 
 .article-title {
     font-size: 18px;
-    text-align: center;
+    /*text-align: center;*/
     /*line-height: 1.2;*/
     color: #616161;
     /*font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;*/
@@ -48,7 +65,7 @@
     /*border-right-style: ridge;*/
     margin: 240px 0 0 0;
     /*padding: 20px;*/
-    text-align: left;
+    text-align: right;
     font-size: 18px;
     color: #616161;
 }
@@ -62,7 +79,7 @@
 }
 
 .comment-body {
-    background: #e6d3de;
+    background: rgba(0, 0, 0, 0);
     padding: 1.5em 1.5em 1.5em;
     max-width: 850px;
     margin: 15px auto 15px;
@@ -103,21 +120,23 @@
     color: #e6c1c1;
 }
 
+
+
 .post-img {
     display: block;
     margin-right: auto;
     margin-left: auto;
     margin-top: 40px;
     margin-bottom: 40px;
-    /*horiz-align: center;*/
-    max-width: 50%;
+    max-width: 1000px;
+    max-height: 400px;
     /*max-height: fit-content;*/
 }
 
 .post-body {
     display: block;
     margin-right: 10%;
-    margin-left:10%;
+    margin-left: 10%;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -133,15 +152,16 @@
 #container-comments-border {
     margin: 80px;
     border: #99828d;
-    border-style: ridge;
-    border-radius: 25px;
+    /*border-style: ridge;*/
+    /*border-radius: 25px;*/
     padding: 20px;
     max-width: fit-content;
-    box-shadow: 0 0 1em #1e221d;
+    /*box-shadow: 0 0 1em #1e221d;*/
 }
 
 #container-comments {
-    background: #e6d3de;
+    /*background: #e6d3de;*/
+    background-image: linear-gradient(to right, rgba(204, 163, 194, 1), rgba(204, 163, 194, 0.20));
     padding: 1.5em;
     max-width: 400px;
     margin: 10px;

@@ -1,5 +1,6 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load filters %}
 
 {% block title %}
     {{ post.title }}
@@ -8,32 +9,45 @@
 {% block page_content %}
 
     <div class="article-general container">
-        <nav class="">
+        <div class="article-info container">
             <div class="row">
-                <div class="col-lg-3">
-                    <li class="subnav-divider row">
+                <div class="col-md-3">
+                    <span class="subnav-divider">
                         <time>{{ post.post_datetime }}</time>
-                    </li>
+                    </span>
                 </div>
-                <div class="col-lg-3">
-                    <li class="subnav-divider row">
+                <div class="col-md-3">
+                    <span class="subnav-divider">
                         <span>posted by:</span>
                         <a href="{% url 'details' post.author_id %}"
-                           class=""> {{ post.author }}</a>
-                    </li>
+                           class="text-decoration-none"> {{ post.author }}</a>
+                    </span>
                 </div>
-                <div class="col-lg-3">
-                    <li class="subnav-divider row">
-                        <a class="" href="">{{ post.title }}</a>
-                    </li>
+
+                <div class="col-md-3">
+                    <div class="" style="font-weight: bold">
+                        <a class="text-decoration-none" href="{% url 'one-post' post.pk %}">
+                            {{ post.title }}
+                        </a>
+                    </div>
                 </div>
+
+                {% if request.user.is_superuser or request.user|has_group:"writers" %}
+                    <div class="col-md-3">
+                        <span class="subnav-divider">
+                            <a class="text-decoration-none" href="{% url 'edit_post' post.pk %}?next={{ request.path }}"
+                               style="margin-bottom: 10px">Edit post</a>
+                        </span>
+                    </div>
+                {% endif %}
             </div>
-        </nav>
+        </div>
+
         {% if post.header_img %}
         <div class="row">
-            <div class="post-img">
-                <img src="{{ post.header_img.url }}">
-            </div>
+
+            <img class="post-img" src="{{ post.header_img.url }}">
+
         </div>
         {% endif %}
         <div class="row">
@@ -43,62 +57,58 @@
         </div>
     </div>
 
-<div class="container" id="container-comments-border">
-    {% for comment in all_comments %}
-        <div class="container" id="container-comments">
-            <div class="row  text-muted">
-                <div class="col-mg-1">
-                    {{ comment.comment_datetime }}
+    <div class="container" id="container-comments-border">
+        {% for comment in all_comments %}
+            <div class="container" id="container-comments">
+                <div class="row  text-muted">
+                    <div class="col-mg-1">
+                        {{ comment.comment_datetime }}
+                    </div>
+                    <div class="col-md-1">
+                        <a href="{% url 'details' comment.user.pk %}">{{ comment.user }}</a>
+                    </div>
                 </div>
-                <div class="col-md-1">
-                    <a href="{% url 'details' comment.user.pk %}">{{ comment.user }}</a>
-                </div>
-            </div>
 
-            <div>
-                <div class="col-md-1 comment-body">
-                    {{ comment.body }}
-                    <div class="comment-info text-left">
-                        {% if comment.user_id == request.user.id or request.user.is_superuser%}
-                            <div class="col-lg-12">
-                                <a href="{% url 'edit-comment' comment.pk %}?next={{ request.path }}">
-                                    <button type="button" class="btn btn-outline-primary btn-sm float-right" value="">
-                                        Edit
-                                    </button>
-                                </a>
-                                <a href="{% url 'delete-comment' comment.pk %}?next={{ request.path }}">
-                                    <button type="button" class="btn btn-outline-danger btn-sm float-right" value="">
-                                        Delete
-                                    </button>
-                                </a>
-                            </div>
-                        {% endif %}
+                <div>
+                    <div class="col-md-1 comment-body">
+                        {{ comment.body }}
+                        <div class="comment-info text-left">
+                            {% if comment.user_id == request.user.id or request.user.is_superuser %}
+                                <div class="col-lg-12">
+                                    <a href="{% url 'edit-comment' comment.pk %}?next={{ request.path }}">
+                                        <button type="button" class="btn btn-outline-primary btn-sm float-right" value="">
+                                            Edit
+                                        </button>
+                                    </a>
+                                    <a href="{% url 'delete-comment' comment.pk %}?next={{ request.path }}">
+                                        <button type="button" class="btn btn-outline-danger btn-sm float-right" value="">
+                                            Delete
+                                        </button>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
+        {% endfor %}
+
+        <div class="container container-comments">
+            <form method="post">
+                {% csrf_token %}
+                <div class="comment-info text-left">
+                    <div class="row text-left text-muted">
+
+                    <div class="row" >
+                        <div class="col-lg-8">
+                            <label>Write your comment...</label>
+                            {{ comment_form.body }}
+                        </div>
+                        <div class="col-md-6" style="margin: 20px">
+                            <input type="submit" class="button btn btn-outline-secondary" value="Comment">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    {% endfor %}
-
-    <div class="container container-comments">
-        <form method="post">
-            {% csrf_token %}
-            <div class="comment-info text-left">
-                <div class="row text-left text-muted">
-{#                    <div class="col-md-1 text-decoration-none">#}
-{#                        <a href="{% url 'details' request.user.pk %}">{{ request.user.username }}</a>#}
-{#                    </div>#}
-                </div>
-                <div class="row" >
-                    <div class="col-lg-8">
-                        <label>Write your comment...</label>
-                        {{ comment_form.body }}
-                    </div>
-                    <div class="col-md-6" style="margin: 20px">
-                        <input type="submit" class="button btn btn-outline-secondary" value="Comment">
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 {% endblock page_content %}

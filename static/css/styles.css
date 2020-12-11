@@ -3,7 +3,7 @@
     margin-top: 80px;
     margin-left: 15px;
     margin-bottom: 1em;
-    size: 80px;
+    size: 200px;
 }
 
 .col-md-6 .col-md-8 .col-md-1 {
@@ -16,15 +16,18 @@
 
 .custom-nav, dropdown-item {
     font-family: papyrus;
+    color: #f7ffef;
+    font-weight: 800;
     font-size: 20px;
     padding-left: 50px;
     padding-right: 50px;
-    background-color: #99838e;
+    background-color: #d9becc;
     height: 60px;
 }
 
 .nav-item {
     margin-right: 8px;
+    color: #f7ffef;
 }
 
 #add-msg-form {
@@ -75,7 +78,7 @@
     cursor: pointer;
     font-size: 22px;
     color: #3c3c3c;
-    width: 1280px;
+    /*width: 1400px;*/
     vertical-align: middle;
     max-width: 100%;
     height: auto;
