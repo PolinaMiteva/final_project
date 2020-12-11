@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, FormView
 
-from Django_fnl_project.decorators import required_user, required_user_for_comment
+from Django_fnl_project.decorators import required_user, required_user_for_comment, required_group_user
 from Django_fnl_project.mixins import GroupRequiredMixin
 from blog.forms import CommentForm, PostForm
 from blog.models import Post, Comment
@@ -17,6 +17,7 @@ class AllBlogPosts(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'all_posts.html'
     paginate_by = 3
+    ordering = 'post_datetime'
 
 
 @login_required
@@ -64,6 +65,7 @@ def edit_comment(request, pk):
     return render(request, template_name=edit_comment, context={'form': form})
 
 
+
 @login_required
 @required_user_for_comment
 def delete_comment(request, pk):
@@ -94,9 +96,9 @@ class NewPostView(GroupRequiredMixin, LoginRequiredMixin, FormView):
             return super().form_valid(form)
 
 
-#!!!!!!!!! - group required decorator
-@login_required()
-def edit_post(request, pk):
+@login_required
+@required_group_user
+def edit_post(request, pk,):
     if request.method == "GET":
         instance = Post.objects.get(pk=pk)
         context = {

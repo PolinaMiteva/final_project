@@ -20,7 +20,6 @@ class GroupRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         user = request.user
         if not user.is_authenticated:
-            # raise PermissionDenied
             return render(request, "errors/404.html")
 
         groups_set = set(self.groups or [])

@@ -25,3 +25,22 @@ def required_user_for_comment(view_func):
         else:
             return render(request, "errors/404.html")
     return wrap
+
+
+def required_group_user(view_func):
+    def wrap(request, *args, **kwargs):
+        groups = ['writers']
+        user = request.user
+        if not user.is_authenticated:
+            return render(request, "errors/404.html")
+
+        groups_set = set(groups or [])
+        raw_groups = request.user.groups.all()
+        user_groups = set([group.name for group in raw_groups])
+
+        if not user_groups.intersection(groups_set) and not user.is_superuser:
+            return render(request, "errors/404.html")
+        else:
+            return view_func(request, *args, **kwargs)
+
+    return wrap
