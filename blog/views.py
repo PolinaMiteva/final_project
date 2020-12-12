@@ -17,7 +17,7 @@ class AllBlogPosts(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'all_posts.html'
     paginate_by = 2
-    ordering = 'post_datetime'
+    ordering = '-post_datetime'
 
 
 @login_required
@@ -91,9 +91,8 @@ class NewPostView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         return context
 
 
-
-@login_required
 @required_group_user
+@login_required
 def edit_post(request, pk,):
     if request.method == "GET":
         instance = Post.objects.get(pk=pk)
