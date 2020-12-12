@@ -1,5 +1,6 @@
 # from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, render
 
@@ -39,3 +40,4 @@ class LogoutRequiredMixin:
         if user.is_authenticated:
             logout(request)
         return super().dispatch(request, *args, **kwargs)
+

@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 
@@ -21,7 +22,6 @@ class UpdateUser(UserChangeForm, BootstrapFormControl):
         super().__init__(*args, **kwargs)
         self.setup_form()
 
-
     class Meta:
         model = User
         fields = 'first_name', 'last_name', 'email',
@@ -31,7 +31,6 @@ class UpdateProfile(UserChangeForm, BootstrapFormControl):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setup_form()
-
 
     class Meta:
         model = Profile

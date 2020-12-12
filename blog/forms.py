@@ -1,5 +1,4 @@
 from django import forms
-
 from Django_fnl_project.mixins import BootstrapFormControl
 from blog.models import Post, Comment
 

@@ -1,3 +1,20 @@
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol,
+ul li,
+ol li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
 .index-img {
 
     margin-top: 80px;
@@ -99,7 +116,7 @@ body {
     background-position: center;
     background-repeat: repeat;
     /*background-size: cover;*/
-    margin-bottom: 1.5em;
+    scroll-margin-bottom: 20px;
 }
 
 h4 {

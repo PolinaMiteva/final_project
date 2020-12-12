@@ -6,7 +6,6 @@ from django.db import transaction
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.urls import reverse_lazy
-
 from Django_fnl_project.decorators import required_user
 from Django_fnl_project.mixins import LogoutRequiredMixin
 from authentication.forms import RegistrationForm, LoginForm
@@ -14,7 +13,6 @@ from user_profile.forms import ProfileForm
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordChangeDoneView
 
 
-# @transaction.atomic
 def register(request):
     if request.method == 'POST':
         user_form = RegistrationForm(request.POST)

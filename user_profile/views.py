@@ -1,4 +1,6 @@
 import os
+
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -8,16 +10,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from Django_fnl_project.decorators import required_user
 from user_profile.forms import UpdateProfile, UpdateUser
 from user_profile.models import Profile
-
-
-# class Details(LoginRequiredMixin, TemplateView):
-#     template_name = 'details.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['user'] = User.objects.get(pk=args['pk'])
-#         return context
-
 
 @login_required
 def details(request, pk=None):
@@ -43,16 +35,21 @@ def update_profile(request, pk):
         }
         return render(request, 'update_profile.html', context)
     elif request.method == "POST":
-        current_picture = Profile.objects.get(user_id=request.user.pk).picture
-        user_form = UpdateUser(request.POST, instance=request.user)
-        profile_form = UpdateProfile(request.POST, request.FILES, instance=request.user.profile)
+        current_user = User.objects.get(pk=pk)
+        current_profile = Profile.objects.get(user_id=pk)
+        current_picture = current_user.profile.picture.name[17:]
+
+        user_form = UpdateUser(request.POST, instance=current_user)
+        profile_form = UpdateProfile(request.POST, request.FILES, instance=current_profile)
 
         if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
+            user = user_form.save()
+            profile = profile_form.save()
 
-        if current_picture != 'default_user.png':
-            os.remove(current_picture.path)
-
+            if request.FILES.get('picture'):
+                pic_name = request.FILES.get('picture').name
+                if pic_name != current_picture and current_picture != '':
+                    os.remove(current_user.profile.picture.path)
             return redirect('details', pk=request.user.pk)
 
         context = {

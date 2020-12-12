@@ -5,7 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, FormView
+from django.views.generic import ListView, DetailView, UpdateView, FormView, CreateView
 
 from Django_fnl_project.decorators import required_user, required_user_for_comment, required_group_user
 from Django_fnl_project.mixins import GroupRequiredMixin
@@ -16,7 +16,7 @@ from blog.models import Post, Comment
 class AllBlogPosts(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'all_posts.html'
-    paginate_by = 3
+    paginate_by = 2
     ordering = 'post_datetime'
 
 
@@ -49,11 +49,12 @@ def edit_comment(request, pk):
     if request.method == "POST":
         instance = Comment.objects.get(pk=pk)
         current_body = instance.body
-        form = CommentForm(request.POST, instance=instance)
+        form = CommentForm(request.POST, instance=instance,)
         if form.data['body'] != current_body:
             body = form.data['body']
             instance.body = body
-            instance.save()
+        instance.save()
+
         next = request.GET.get('next', reverse('all-blog-posts'))
         return HttpResponseRedirect(next)
 
@@ -78,7 +79,7 @@ def delete_comment(request, pk):
         return render(request, 'delete_comment.html')
 
 
-class NewPostView(GroupRequiredMixin, LoginRequiredMixin, FormView):
+class NewPostView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     form_class = PostForm
     template_name = 'new_post.html'
     success_url = reverse_lazy('all-blog-posts')
@@ -89,10 +90,6 @@ class NewPostView(GroupRequiredMixin, LoginRequiredMixin, FormView):
         context['next'] = self.request.GET.get('next', reverse('index'))
         return context
 
-    def form_valid(self, form):
-        if form.is_valid():
-            form.save()
-            return super().form_valid(form)
 
 
 @login_required

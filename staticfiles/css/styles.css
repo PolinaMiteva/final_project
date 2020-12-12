@@ -1,3 +1,20 @@
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol,
+ul li,
+ol li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
 .index-img {
 
     margin-top: 80px;
@@ -39,7 +56,7 @@
     background: #e6e4e5;
     padding: 1.5em 1.5em 0.5em;
     max-width: 450px;
-    margin: 25px auto 25px;
+    margin: 25px auto 80px;
     box-shadow: 0 0 1em #1e221d;
     max-height: fit-content;
     color: #616161;
@@ -62,10 +79,11 @@
     background: #e6e4e5;
     padding: 1.5em 1.5em 0.5em;
     max-width: 900px;
-    margin: 25px auto 25px;
+    margin: 25px auto 80px;
     box-shadow: 0 0 1em #1e221d;
     max-height: fit-content;
     color: #616161;
+    margin-bottom: 25px;
 }
 
 
@@ -97,7 +115,8 @@ body {
     height: 100%;
     background-position: center;
     background-repeat: repeat;
-    background-size: cover;
+    /*background-size: cover;*/
+    scroll-margin-bottom: 20px;
 }
 
 h4 {
@@ -129,5 +148,5 @@ input {
     box-sizing: border-box;
     width: 100%;
     outline: none;
-    margin: 0;
+    margin: 0 0 40px 0 ;
 }
