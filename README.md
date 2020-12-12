@@ -27,7 +27,7 @@
 
 ###Admin
 
-* Full CRUD for all content
+* Full CRUD for all content - only admins can delete posts
 
 
 ##Added extra features
