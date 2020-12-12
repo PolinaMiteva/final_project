@@ -1,17 +1,21 @@
 from django.contrib import admin
 from blog.models import Comment, Post
 
-# admin.site.register(Comment)
-# admin.site.register(Post)
+
+class CommentInlineAdmin(admin.StackedInline):
+    model = Comment
+    list_display = ('id', 'user', 'body', 'comment_datetime')
+    readonly_fields = 'id',
 
 
-@admin.register(Post)
-class PersonAdmin(admin.ModelAdmin):
+class PostAdmin(admin.ModelAdmin):
     readonly_fields = 'id',
     list_display = ('id', 'author', 'title', 'body', 'post_datetime', 'header_img')
 
+    inlines = (
+        CommentInlineAdmin,
+    )
 
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    readonly_fields = 'id',
-    list_display = ('id', 'user', 'body', 'comment_datetime')
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Comment)

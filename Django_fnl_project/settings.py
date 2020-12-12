@@ -13,7 +13,11 @@ SECRET_KEY = 'bqykujnxfp+0m+gnx%h1e6%v^f0t16-a@ph7)3b!(6p2-1olwx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'http://fnl-project.herokuapp.com/'
+]
 
 # Application definition
 

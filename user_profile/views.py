@@ -47,15 +47,12 @@ def update_profile(request, pk):
         user_form = UpdateUser(request.POST, instance=request.user)
         profile_form = UpdateProfile(request.POST, request.FILES, instance=request.user.profile)
 
-        if user_form.is_valid():
-            user = user_form.save()
-            if request.FILES:
-                if request.FILES['picture'] != current_picture:
-                    user.profile.picture = request.FILES['picture']
-                    if current_picture != 'default_user.png':
-                        os.remove(current_picture.path)
-            user.save()
-            profile_form.save()
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+
+        if current_picture != 'default_user.png':
+            os.remove(current_picture.path)
+
             return redirect('details', pk=request.user.pk)
 
         context = {

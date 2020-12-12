@@ -9,8 +9,8 @@
 {% block page_content %}
     <form class="container-all" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h4>Edit profile</h4>
-        <form class="form-group">
+        <h4>Update profile</h4>
+        <form class="form-group" enctype="multipart/form-data">
             {% if user_form.errors %}
                 {{ user_form.errors }}
             {% endif %}
