@@ -34,6 +34,8 @@
 * Extended Django user  - default picture and default phone number are added to every account upon creation.
 * Log out added (mandatory for log in) and change password
 * Custom CSS
+* CBV
+
 
 
 
