@@ -1,4 +1,4 @@
-# Spiritual energy balance practice - promotional website for a Reiki master
+<h1> Spiritual energy balance practice - promotional website for a Reiki master
 
 ###The site is for people who are interested in the healing power of Reiki. 
 ###It's main purpose is to promote the practice of a new Reiki master.

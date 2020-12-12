@@ -1,4 +1,6 @@
 from functools import wraps
+
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
@@ -13,6 +15,15 @@ def required_user(view_func):
             return view_func(request, *args, **kwargs)
         else:
             return render(request, "errors/404.html")
+    return wrap
+
+
+def log_out_required(view_func):
+    def wrap(request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated:
+            logout(request)
+        return view_func(request, *args, **kwargs)
     return wrap
 
 

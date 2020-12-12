@@ -11,13 +11,13 @@ from Django_fnl_project.decorators import required_user
 from user_profile.forms import UpdateProfile, UpdateUser
 from user_profile.models import Profile
 
+
 @login_required
 def details(request, pk=None):
-
     user = User.objects.get(pk=pk)
     context = {
         'user': user,
-        'can_edit': True if request.user.pk == user.pk or user.is_superuser else False,
+        'can_edit': True if request.user == user or request.user.is_superuser else False,
     }
 
     return render(request, 'details.html', context=context)
@@ -46,10 +46,10 @@ def update_profile(request, pk):
             user = user_form.save()
             profile = profile_form.save()
 
-            if request.FILES.get('picture'):
-                pic_name = request.FILES.get('picture').name
-                if pic_name != current_picture and current_picture != '':
-                    os.remove(current_user.profile.picture.path)
+            # if request.FILES.get('picture'):
+            #     pic_name = request.FILES.get('picture').name
+            #     if pic_name != current_picture and current_picture != '':
+            #         os.remove(current_user.profile.picture.path)
             return redirect('details', pk=request.user.pk)
 
         context = {
