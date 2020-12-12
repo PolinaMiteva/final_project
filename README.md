@@ -15,10 +15,10 @@
 ###Users
 
 * Unauthenticated users have limited access to pages
-* Registered user get their default profile card which they can alter
+* Registered users get their default profile card which they can alter
 * The profile card of every user is their "id" in blog page
 * Authenticated users can access the blog pages
-* Authenticated users can comment blog posts and have CRUD for their comments
+* Authenticated users can comment blog posts and have full CRUD for their comments
 
 ###Writers
 
@@ -35,6 +35,7 @@
 * Log out added (mandatory for log in) and change password
 * Custom CSS
 * CBV
+
 
 
 
